@@ -11,9 +11,12 @@ email: hello@deliveroo.engineering
 description: > # this means to ignore newlines until "baseurl:"
   Deliveroo engineering blog
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://deliveroo.engineering" # the base hostname & protocol for your site
+url: "http://localhost" # the base hostname & protocol for your site
 
-repository: "deliveroo/deliveroo.engineering"
+encoding: utf-8
+
+repository: "exceedra/exceedra.engineering"
+highlighter: rouge 
 
 # Build settings
 markdown: kramdown
