@@ -6,16 +6,16 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: deliveroo.engineering
-email: hello@deliveroo.engineering
+title: exceedra.product
+email: no@email
 description: > # this means to ignore newlines until "baseurl:"
-  Deliveroo engineering blog
+  Exceedra product blog
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://localhost" # the base hostname & protocol for your site
+url: "http://http://exceedrarandd.cloudapp.net:10117/" # the base hostname & protocol for your site
 
 encoding: utf-8
 
-repository: "exceedra/exceedra.engineering"
+repository: ""
 highlighter: rouge 
 
 # Build settings

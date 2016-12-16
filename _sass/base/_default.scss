@@ -14,7 +14,7 @@
 
 a {
   @include link(aubergine);
-  @include external-href('deliveroo.engineering') {
+  @include external-href('exceedra.product') {
     &::after {
       @include image-replacement('/images/external_link_aubergine', 12px, 12px, $type: 'svg');
       display: inline-block;
