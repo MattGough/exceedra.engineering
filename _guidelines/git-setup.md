@@ -1,22 +1,29 @@
+---
+layout:     guidelines
+title:      "Git Setup"
+subtitle:   "The first time you need Git start here"
+collection: guidelines
+---
+
 # Starting GIT
 
-Prerequisites
+##Prerequisites
 
 Git Bash - 
 
 Visual Studio 2017 Community RC - 
 
-## Visual Studio 
+### Visual Studio 
 
 In Team Explorer, open upthe Connect page by choosing Projects and My Teams then Manage Connections
 
-![img](file:///C:/Users/CRAIGH~1/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png)
+![img](/images/guidelines/setup-git/1.png)
 
  
 
 `Hit: Servers`
 
-![img](file:///C:/Users/CRAIGH~1/AppData/Local/Temp/msohtmlclip1/01/clip_image004.png)
+![img](/images/guidelines/setup-git/2.png)
 
  
 
@@ -24,7 +31,7 @@ In Team Explorer, open upthe Connect page by choosing Projects and My Teams th
 
 You will now be connected to our SP Git project
 
-![img](file:///C:/Users/CRAIGH~1/AppData/Local/Temp/msohtmlclip1/01/clip_image006.png)
+![img](/images/guidelines/setup-git/3.png)
 
 Server url is:       exceedrasoftware.visualstudio.com
 
@@ -38,33 +45,33 @@ Select the project you want to connect to
 
  `Hit: Connect` 
 
-![img](file:///C:/Users/CRAIGH~1/AppData/Local/Temp/msohtmlclip1/01/clip_image008.jpg)
+![img](/images/guidelines/setup-git/4.png)
 
  
 
 Click on the repo from the connections list
 
-![img](file:///C:/Users/CRAIGH~1/AppData/Local/Temp/msohtmlclip1/01/clip_image010.png)
+![img](/images/guidelines/setup-git/5.png)
 
 You will be asked to clone the repo, which we will do using Git Bash, but we need the path first and the branch name from the dropdown highlighted.
-![img](file:///C:/Users/CRAIGH~1/AppData/Local/Temp/msohtmlclip1/01/clip_image012.png)
+![img](/images/guidelines/setup-git/6.png)
 
 
 
 Navigate to the repo and the branch you want to clone and hit clone to get the URL.
 
-![img](file:///C:/Users/CRAIGH~1/AppData/Local/Temp/msohtmlclip1/01/clip_image014.png)
+![img](/images/guidelines/setup-git/7.png)
 
 
 
  
 
-# Bash Git
+### Bash Git
 
 Navigate explorer to your working repo folder, for me its “C:\Users\CraigHogan\Source\Repos\SalesPlanner (Application) GIT”
 
 Right click on explorer and “Git Bash here”
-<!--Note all commands/file names are case sensitive-->![img](file:///C:/Users/CRAIGH~1/AppData/Local/Temp/msohtmlclip1/01/clip_image015.png)
+<!--Note all commands/file names are case sensitive-->![img](/images/guidelines/setup-git/8.png)
 
 Make a folder for this branch/repo, named so you have an
 
@@ -74,13 +81,13 @@ idea of what it is for.
 Change to this working folder
 `$ cd (then hit TAB until the folder you are looking for is visible)`
 
-![img](file:///C:/Users/CRAIGH~1/AppData/Local/Temp/msohtmlclip1/01/clip_image016.png)
+![img](/images/guidelines/setup-git/9.png)
 
 Initialise the repo for git
 
 `$ git init`
 
-![img](file:///C:/Users/CRAIGH~1/AppData/Local/Temp/msohtmlclip1/01/clip_image017.png)
+![img](/images/guidelines/setup-git/10.png)
 
 Add the remote server to the repo
 
@@ -88,7 +95,7 @@ Add the remote server to the repo
 
  
 
-![img](file:///C:/Users/CRAIGH~1/AppData/Local/Temp/msohtmlclip1/01/clip_image018.png)
+![img](/images/guidelines/setup-git/11.png)
 
 In blue you will see it says (master) we don’t want thisbranch, so we need to fetch the branch you want to work with.
 
@@ -96,7 +103,7 @@ In blue you will see it says (master) we don’t want thisbranch, so we need to 
 
 You will get the lovely vsonline download screen
 
-![img](file:///C:/Users/CRAIGH~1/AppData/Local/Temp/msohtmlclip1/01/clip_image019.png)
+![img](/images/guidelines/setup-git/12.png)
 
 If you look in your repo folder there wont be anythingthere, all you have done is fetched the branch and stored it in your own gitdatabase.
 
@@ -104,7 +111,7 @@ To get the files you need to check them out
 
 `$ git checkout "2_9_E0_unplanned"`
 
-![img](file:///C:/Users/CRAIGH~1/AppData/Local/Temp/msohtmlclip1/01/clip_image020.png)
+![img](/images/guidelines/setup-git/13.png)
 
 Note the branch in blue has switched as you are now activelyconnected to this local branch.
 
@@ -112,7 +119,7 @@ Open the solution in visual studio to do the fun stuff, the Git Bash Gui is a gr
 
  
 
-##  Need a new branch
+###  Need a new branch
 
 If you are starting work on a new feature, click on “New Branch” and create one based on the current version master.
 The new branch name must be structured like:  
