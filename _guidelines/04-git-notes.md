@@ -28,9 +28,16 @@ the above ensures that commits and PRs are reported into Jira, making it
 possible for someone to traverse links to read a story's implementation instead
 of searching.
 
+<!-- 
 Note that [git-whistles](https://github.com/mezis/git-whistles) will do most of
 this for you: naming the branch right, the PR when issuing it, and even pasting
 the ticket description into your PR for better reviewer comfort!
+-->
+
+## Things to remember before starting
+
+When branching for code you are sole developing, you can do this locally by cloning the Dev brach at the enhancement level, so if working on a feature for 2.9 E1, you can simply create a branch from your local master at the E1 folder level.
+Once you have committed locally, tested and had a one to one session you can Push the changes into the Dev branch for testing on the server before the changes are Pulled into master
 
 
 ## Force Pushing

@@ -59,8 +59,7 @@ Navigate to the repo and the branch you want to clone and hit clone to get the U
 ![img](/images/guidelines/7.png)
 
 
-
- 
+## Option 1 
 
 ### Bash Git
 
@@ -113,7 +112,15 @@ Note the branch in blue has switched as you are now activelyconnected to this lo
 
 Open the solution in visual studio to do the fun stuff, the Git Bash Gui is a great place to do your checkins (commits) to your local and remote branches
 
- 
+
+## Option 2 (easy)
+
+### Sourcetree
+
+Source tree is free from atlassian, the same people who make JIRA, you need to install it and login with your JIRA account, then clone the repo you want to work on from the Dev branch.
+
+[Source Tree knowledgebase](https://confluence.atlassian.com/sourcetreekb)
+
 
 ###  Need a new branch
 
@@ -122,4 +129,18 @@ The new branch name must be structured like:  
 
 `[Major]_[Minor]_E[enhancement]_[feature Name]`
 
- 
+<!--
+### Git whistles
+
+This uses ruby, so you will need ot install this as per the ruby Setup
+[install](https://github.com/mezis/git-whistles)
+
+Navigate to the project Git and run:
+
+'''
+$ git config [--global] jira.username ??????.?????@exceedra.com
+$ git config [--global] jira.password ???????
+$ git config [--global] jira.site https://exceedra.atlassian.net
+'''
+
+-->
