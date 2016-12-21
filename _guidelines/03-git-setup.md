@@ -63,7 +63,7 @@ Navigate to the repo and the branch you want to clone and hit clone to get the U
 
 ### Bash Git
 
-Navigate explorer to your working repo folder, for me its “C:\Users\CraigHogan\Source\Repos\SalesPlanner (Application) GIT”
+Navigate explorer to your working repo folder, for me its “C:\Users\CraigHogan\Source\Repos\SalesPlanner (Application) GIT” it can be anywhere you want it to go, just create one.
 
 Right click on explorer and “Git Bash here”
 <!--Note all commands/file names are case sensitive-->![img](/images/guidelines/8.png)
@@ -86,7 +86,7 @@ Initialise the repo for git
 
 Add the remote server to the repo
 
-`$ git remote add origin https://exceedrasoftware.visualstudio.com/_git/Sales%20Planner%20(Application)%20GIT`
+`$ git remote add origin "https://exceedrasoftware.visualstudio.com/_git/Sales%20Planner%20(Application)%20GIT"`
 
  
 
@@ -94,7 +94,7 @@ Add the remote server to the repo
 
 In blue you will see it says (master) we don’t want thisbranch, so we need to fetch the branch you want to work with.
 
-`$ git fetch origin "2_9_E0_unplanned"`
+`$ git fetch origin "2_9_Dev"`
 
 You will get the lovely vsonline download screen
 
@@ -104,7 +104,7 @@ If you look in your repo folder there wont be anythingthere, all you have done i
 
 To get the files you need to check them out
 
-`$ git checkout "2_9_E0_unplanned"`
+`$ git checkout "2_9_Dev"`
 
 ![img](/images/guidelines/13.png)
 
