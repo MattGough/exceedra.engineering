@@ -1,6 +1,7 @@
 home:        "/"
 articles:    "/articles/"
 guidelines:  "/guidelines/"
+releasenotes:  "/releasenotes/"
 repository:  "https://exceedrasoftware.visualstudio.com/_git/Product%20(Documentation)%20GIT"
 navigation:
   - url:   '/articles/'
@@ -11,3 +12,5 @@ navigation:
     title: 'Authors'
   - url:   '/careers'
     title: 'Work with us!'
+  - url:   '/releasenotes'
+    title: 'Commit notes'
