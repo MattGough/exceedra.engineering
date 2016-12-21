@@ -45,7 +45,7 @@ collections:
     permalink:    /authors/:path/
   releasenotes:
     output:       true
-    permalink:    /releasenotes/:path/
+    permalink:    /release-notes/:path/
 
 defaults:
   - scope:
