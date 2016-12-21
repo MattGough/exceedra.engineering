@@ -10,5 +10,3 @@ navigation:
     title: 'Guidelines'
   - url:   '/releasenotes/'
     title: 'Commits'
-  # - url:   '/careers'
-  #   title: 'Work with us!'
