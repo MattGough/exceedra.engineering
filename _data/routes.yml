@@ -1,9 +1,7 @@
 home:        "/"
 articles:    "/articles/"
 guidelines:  "/guidelines/"
-repository:  "https://github.com/deliveroo/deliveroo.engineering"
-design_blog: "http://deliveroo.design/"
-food_blog:   "http://blog.deliveroo.co.uk"
+repository:  "https://exceedrasoftware.visualstudio.com/_git/Product%20(Documentation)%20GIT"
 navigation:
   - url:   '/articles/'
     title: 'Articles'
