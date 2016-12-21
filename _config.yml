@@ -15,7 +15,7 @@ url: "http://http://exceedrarandd.cloudapp.net:10117/" # the base hostname & pro
 
 encoding: utf-8
 
-repository: ""
+repository: "/_git/Product%20(Documentation)%20GIT/"
 highlighter: rouge 
 
 # Build settings
