@@ -1,6 +1,6 @@
 ---
 layout:     guidelines
-title:      "Software that might be helpful for developers"
+title:      "Software for our Engineers"
 subtitle:   ""
 collection: guidelines
 ---
@@ -9,6 +9,12 @@ collection: guidelines
 
 [Git Bash](https://git-scm.com/download/win)
 
+[SourceTree](sourcetreeapp.com)
+
 [Visual Studio 2017 Community RC](https://www.visualstudio.com/vs/visual-studio-2017-rc/)
 
 [vsCode](http://code.visualstudio.com/) 
+This is great for quick edits as it has automatic support for Git version files/folders
+
+[notepad++](https://notepad-plus-plus.org/)
+
