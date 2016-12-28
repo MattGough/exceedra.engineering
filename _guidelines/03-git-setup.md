@@ -121,6 +121,9 @@ Source tree is free from atlassian, the same people who make JIRA, you need to i
 
 [Source Tree knowledgebase](https://confluence.atlassian.com/sourcetreekb)
 
+When asked to login into Atlassian cloud, you may have to create a new account, its free and is a different platform to our JIRA account from Atlassian.
+Once logged in you will need to set up your Git folder locally using git bash (there may be a way to do it in sourcetree) once setup you can clone the repos.
+
 
 ###  Need a new branch
 
