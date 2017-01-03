@@ -16,29 +16,12 @@ permalink:  /guidelines/appendpoints/
 ### Where to look for our apps 
 
 The links below are the latest set of builds that are available on our internal server for internal use only.
-Links may change without warning as we are still working out this world of CD, if the links change for any reason you can see all available apps here - https://internal.exceedra-sp.com:10111/deployapp/ 
-
-##E0
-
-https://internal.exceedra-sp.com:10111/deployapp/2.9.1_E0_master/wpf.xbap 
-https://internal.exceedra-sp.com:10111/deployapp/2.9.1_E0_dev/wpf.xbap 
-
-##E1
-
-https://internal.exceedra-sp.com:10111/deployapp/2.9.1_E1_master/wpf.xbap 
-https://internal.exceedra-sp.com:10111/deployapp/2.9.1_E1_dev/wpf.xbap 
-
-##E2
-
-NOTE: This is a base copy of 2.10 from 2016. It is not being coded against at the moment. Once phasing is ready to test the SVN branch will be merged in to this source base.
-https://internal.exceedra-sp.com:10111/deployapp/2.9.2_E2_master/wpf.xbap 
-https://internal.exceedra-sp.com:10111/deployapp/2.9.2_E2_dev/wpf.xbap 
-
+Links may change without warning as we are still working out this world of CD, all of the available apps are listed here - https://internal.exceedra-sp.com:10111/deployapp/ 
 
 ##Basic URL structure moving forwards will be
 
 https://internal.exceedra-sp.com:10111/deployapp/[major].[minor].[patch]_[Enhancement]_[Branch]/wpf.xbap
- 
+
 
 Branch note: [master] is the one that we send to our clients (+ the demo) and is the version available from sftp, [dev] is an unstable and is not available anywhere else except here and changes on every check-in to the dev branch.
 
