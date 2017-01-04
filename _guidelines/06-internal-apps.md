@@ -13,7 +13,7 @@ permalink:  /guidelines/appendpoints/
 {:toc}
 
 
-### Where to look for our apps 
+### Where to look for our apps...
 
 The links below are the latest set of builds that are available on our internal server for internal use only.
 Links may change without warning as we are still working out this world of CD, all of the available apps are listed here - https://internal.exceedra-sp.com:10111/deployapp/ 
