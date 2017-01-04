@@ -1,6 +1,6 @@
 ---
 layout:     guidelines
-title:      "Naming things"
+title:      "Naming things nicely"
 subtitle:   "How to call bits of code, apps, and such"
 collection: guidelines
 permalink:  /guidelines/naming/
