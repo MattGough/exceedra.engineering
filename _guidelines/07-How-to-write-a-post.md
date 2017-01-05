@@ -29,12 +29,12 @@ Please note you can use tools like
 | vscode | N | N | Y |
 | https://cloose.github.io/CuteMarkEd/ | Y | N | N |
 | http://dillinger.io/ | Y | Y | N |
-| VSonline (our repo) | N | Y | Y |
+| Vsonline (our repo) | N | Y | Y |
 | https://www.sublimetext.com/ | Y | N | Y |
 | https://atom.io/ | Y | N | Y |
 
 For me the preview functionality is important until you get the hang of the syntax, but the git integration is a nice to have as well.
-Decide for yourself, but i would say atom is the nicest and is from the github team
+Decide for yourself, but from my experiende the atom editor is the nicest and is from the github team. Adding a couple of packages like markdown-editor and git-plus make things very easy.
 
 
 
@@ -62,3 +62,5 @@ public Boom
 }
 
 {% endhighlight %}
+
+Something to remember is under your editor renders highlight you wont see the end result locally
