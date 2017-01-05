@@ -11,12 +11,12 @@ email: no@email
 description: > # this means to ignore newlines until "baseurl:"
   Exceedra product blog
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://http://exceedrarandd.cloudapp.net:10117/" # the base hostname & protocol for your site
+url: "http://exceedrarandd.cloudapp.net:10117/" # the base hostname & protocol for your site
 
 encoding: utf-8
 
 repository: "/_git/Product%20(Documentation)%20GIT/"
-highlighter: rouge 
+highlighter: rouge
 
 # Build settings
 markdown: kramdown
@@ -26,7 +26,7 @@ kramdown:
 
 # Plugins
 gems:
-  # - jekyll-mentions
+   - jekyll-mentions
    - jemoji
    - jekyll-redirect-from
    - jekyll-sitemap

@@ -8,7 +8,8 @@ exerpt: >
 
 
 ### Data in
-'''xml
+
+{% highlight xml %}
 <Results>                   <!-- Standard DB wrapper-->
     <RootItem>              <!-- Root of vertical grid data -->
         <Item_Idx />        <!-- Unique Item ID-->
@@ -24,4 +25,4 @@ exerpt: >
         </Attributes>   
     </RootItem>         
 </Results>     
-'''             
+{% endhighlight %}           
