@@ -38,15 +38,13 @@ Decide for yourself, but from my experiende the atom editor is the nicest and is
 
 
 
-
-
 ## Some gotchas for coders
 
-Code previews are possible, we use highlight js for this and its built in to use these tags:
+Code previews are possible, we use rouge highlighter for this and its built in to use these tags:
 
 { % highlight xml %}
 
-Where xml is the code you are displaying, a full list is available (here)[https://highlightjs.org/static/demo/]
+Where xml is the code you are displaying, a full list is available (here)[http://rouge.jneen.net/
 
 { % endhighlight %}
 
