@@ -1,2 +1,0 @@
-<p>Inside the user settings screen there is an additional hidden tab thatwe can use to display some infor that may help when trying to debug any user issues.</p>
-<img alt="" src="/media/settings/Untitled-1.jpg" />

@@ -1,151 +1,106 @@
+
 ---
 layout: post
-title:  "QFX Documentation"
-author: "cosima calder"
+title:  'QFX-Documentation'
+author: 'cosima.calder@exceedra.com'
 exerpt: >
-  QFX is Exceedra's custom algorithm for predicting the best statistical model to be used on a data set. The complete QFX package uses algorithms and statistical analysis to accurately forecast sales and finances.
+  How QFX works and why forecasts look how they do. 
+
 ---
 
-
-### QFX Documentation
-## Posted by:  on  Monday, 21 Nov 2016 Views: xxx &nbsp;
-
-#How QFX works and why forecasts look how they do. 
-
-**Overview **
-
-QFX is Exceedra's custom algorithm for predicting the best statistical model to be used on a data set. The complete QFX package uses algorithms and statistical analysis to accurately forecast sales and finances.
-
-QFX runs overnight creating a (base volume) forecast for each listing, QFX can also be run through the app manually by the user. The forecasting screen shows which pattern, model and parameters QFX has selected for existing (saved) forecasts. You can also check this while forecasting by clicking calibrate once you have calculated the forecast with QFX.
-
-From a high level QFX consists of two big steps:
-
-·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; When given a set of historic data points, QFX will analyse the data to determine which Pattern the data follows. 
-
-·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Combining the Pattern with further data analysis, QFX will then determine which Statistical model will best forecast the data. 
-
-The current data Patterns we analyse for are: Dormant, Seasonal, Burst, Patchy, Sparse, Launch or Regular.
-
-The current seasonal models we analyse for are: Moving Average, Full-Year Moving Average, Single Exponential smoothing, Holt-Winters Growth and Same As Last Year.
-
-We also allow users to generate a Basic Forecast (which requires a starting value and a % growth per year) but this can only be used by a user in the App, QFX will not use this model in its automated run.
-
-We expose a configuration file to each client. This allows them (us) to change which models are chosen for certain data patterns, or the boundaries for which data patterns will be selected. For example, the config item NumberOfRegularPoints is an integer that dictates how many points of data are required for data to be considered Regular. By default this value is 39 but if a client desired it can be changed. It is unlikely that most of the config ever needs to or should be changed.
-
-The 'number of weeks per year' (npy) default is set to 52. If the clients business year has a more common npy, for example 53, this value should be entered into the client config. The most appropriate value for npy is the most common number of weeks per year, however if it is unclear what this is, the upper limit is preferable. If the config npy is set to 52 (lower limit), all years with 53 weeks (upper limit), will _currently _show 0 in the 53rd week.
-
-The horizon is another config value that will often be changed for a client - this represents how far in the future QFX will forecast.
-
-&nbsp;
-
-&nbsp;**Patterns**
-
-The first step in determining the forecast of a dataset is studying the pattern of the actuals, to deduce the 'type' of data being forecasted. 
-
-Types of patterns searched for are; Dormant, Seasonal, Burst, Patchy, Sparse, Launch or Regular. 
-
-Dormant and seasonal patterns are the most simple data patterns and checked for first. They are defined as follows;
-
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Dormant: **If all last year data is zero.
-
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Seasonal:**
-
-o&nbsp;&nbsp; If there is more than 52 weeks of data **and**** **the data has been defined as seasonal.
-
-o&nbsp;&nbsp; A series of checks are run on the data to test whether it is a seasonal pattern, for example; 
-
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Seasonal 'match' greater than defined min. 
-
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Number of data points real data points less than defined max.
-
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; These defined values are set in the configuration file on setup. Default example; min seasonal match = 77%, max seasonal actives = 39 (out of 52).
-
-The remaining patterns require more complex analysis. Looking at data characteristics such as periods of no data (when, duration, frequency), start and end week data, and so on. Constants stated in the configuration set the limits of the defining characteristics.
-
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Burst**: There is only one 'block' of data in the last year but it has not been classed as seasonal.
-
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Patchy: **There is more than a year of data overall but lots of sporadic periods of no data.
-
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Sparse: **There is very little non zero data in the data history.
-
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Launch:** First week data is zero and one data non-seasonal data 'block'.
-
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Regular: **if data has not been characterized as any of the above and has the more than the minimum number of regular point (as again defined in the configuration), the pattern is set as regular.** **
-
-For each listing QFX takes the pattern and, using this and other variables, selects the most accurate model for forecasting.
-
-&nbsp;
-
-## **&nbsp;****Models**
-
-All of our models exclude seasonality components as QFX adds the 'seasonal profile' to the output forecast. Identified seasonality in the data is removed before modelling and seasonal components are re-introduced at a later stage in the calculation using a multiplicative method.
-
-To determine the best model QFX uses minimizes error between actual data and the forecast of that data. For error detection QFX uses the root mean square value (RMS) and the mean absolute percentage error (MAPE), both are measures of prediction accuracy of a forecasting method in statistics. Once models are chosen the parameters used are calibrated again to refine and achieve highest accuracy.
-
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Moving Average, Full-Year Moving Average: **Both of these models follow a similar method and algorithm, one studying full year. The parameters for these models are the number of terms.
-
-o&nbsp;&nbsp; Associated pattern/s: seasonal, launch.
-
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Single Exponential Smoothing (SES): **SES is used as a basic smoothing model and has no trend component (neither multiplicative nor additive). SES uses a refined smoothing component, alpha, to most accurately forecast.
-
-o&nbsp;&nbsp; Associated pattern/s: regular.
-
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Holt-Winters Growth: **The Holts exponential smoothing model we use has an additive trend component, a smoothing parameter and a trend parameter are used to refine the model.
-
-o&nbsp;&nbsp; Associated pattern/s: regular.
-
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Same As Last Year: **data is replicated a year (or time period) into the future.
-
-o&nbsp;&nbsp; Associated pattern/s: sparse.
-
-&nbsp;
-
-### **Seasonal Profile**
-
-Seasonality is the last phase of forecasting and applied onto the forecast (created by the best fit model). The seasonal profile is found from historic data and multiplicatively applied to the forecast.
-
-&nbsp;
-
-**Outliers**
-
-QFX handles outliers defined by the database (data points during promotional periods are flagged as outliers) internally for calculations;
-
-·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; These are used during pattern matching and used/ignored in various circumstances during model selection and when applying seasonality.
-
-You can manually add outliers on the forecasting screen without changing sales history.
-
-When forecasting QFX replaces outlier values with an interpolation value of the surrounding points, this gives are more accurate representation of the true value before, for example, a promotion, hence producing a more accurate baseline forecast.
-
-**&nbsp;**
-
-**Forecast Visual Analysis**
-
-**&nbsp;****Forecast questions answered:**
-
-* **Why do some forecasts start at different points?**
-
-Different models forecast data in different ways. Depending on the model chosen by QFX, the forecast will start at different distances from the first actual. Moving average models will start forecasting 'x' number of weeks after the first week of actuals as this is enough data for it to start forecasting. Same as last year models, however, will start the forecast at the current date, as before the seasonal profile is applied this model is effectively copying the last year of data forward until the horizon.
-
-Data in the past baseline forecast cells can be used as an accuracy measure for the client, to compare the actuals to what was forcasted for that week/month by QFX, and will help the future forecast be as accurate as possible.
-
-&nbsp;
-
-* **Why are some forecasts flat?**
-
-In the absence/uniformity of a seasonal profile some QFX models (eg. moving average) will forecast a flat baseline. This can happen, for example,&nbsp;in&nbsp;new 'LAUNCH' products where there is less data than the seasonal profile limit allows (less than ¾ year of data), so a uniform profile is applied hence a flat weekly baseline. 
-
-This limit is set in the config and can be 'reduced' but would lead to issues such as;
-
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The missing data weeks from the past year would be forecasted as zeros – this is not an accurate forecast as it's a new product not sparse.
-
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The whole forecast would be have a lower total base than truly expected as the forecast has added zeros where there shouldn't be/won't be in the future.
-
-&nbsp;
-
-If the forecast is flat, this is the most accurate forecast QFX can provide with the given data. The forecast will continue to improve as more actuals become available and a seasonal profile can be created and a more complex model can be applied.
-
-© cosima calder, 2016 
-
- | 
-
-  
+  <span style="font-family: Tahoma; font-size: 16px;"><strong>Overview
+</strong></span>
+<p style="margin: 8px 0px;"><span lang="EN-US" style="margin: 0px; font-size: 14px;" color="#000000" face="Tahoma">QFX is
+Exceedra&rsquo;s custom algorithm for predicting the best statistical model to be
+used on a data set. The complete QFX package uses algorithms and statistical
+analysis to accurately forecast sales and finances.</span></p>
+<p style="margin: 8px 0px;"><span lang="EN-US" style="margin: 0px; font-size: 14px;" color="#000000" face="Tahoma">QFX
+runs overnight creating a (base volume) forecast for each listing, QFX can also
+be run through the app manually by the user. The forecasting screen shows which
+pattern, model and parameters QFX has selected for existing (saved) forecasts.
+You can also check this while forecasting by clicking calibrate once you have
+calculated the forecast with QFX.</span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">
+From a high level QFX consists of two big steps:</span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">&middot;</span><span style="font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;" color="#000000" face="Tahoma">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size: 14px;" color="#000000" face="Tahoma">When given a set of historic data points, QFX will analyse the data to determine which Pattern the data follows. </span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">&middot;</span><span style="font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;" color="#000000" face="Tahoma">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size: 14px;" color="#000000" face="Tahoma">Combining the Pattern with further data analysis, QFX will then determine which Statistical model will best forecast the data. </span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">The current data Patterns we analyse for are: Dormant, Seasonal, Burst, Patchy, Sparse, Launch or Regular.</span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">The current seasonal models we analyse for are: Moving Average, Full-Year Moving Average, Single Exponential smoothing, Holt-Winters Growth and Same As Last Year.</span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">We also allow users to generate a Basic Forecast (which requires a starting value and a % growth per year) but this can only be used by a user in the App, QFX will not use this model in its automated run.</span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">We expose a configuration file to each client. This allows them (us) to change which models are chosen for certain data patterns, or the boundaries for which data patterns will be selected. For example, the config item NumberOfRegularPoints is an integer that dictates how many points of data are required for data to be considered Regular. By default this value is 39 but if a client desired it can be changed. It is unlikely that most of the config ever needs to or should be changed.</span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">The 'number of weeks per year' (npy) default is set to 52. If the clients business year has a more common npy, for example 53, this value should be entered into the client config. The most appropriate value for npy is the most common number of weeks per year, however if it is unclear what this is, the upper limit is preferable. If the config npy is set to 52 (lower limit), all years with 53 weeks (upper limit), will <em>currently </em>show 0 in the 53rd week.</span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">The horizon is another config value that will often be changed for a client - this represents how far in the future QFX will forecast.</span></p>
+<p><span style="color: red; font-family: Tahoma; font-size: 16px;">&nbsp;</span></p>
+<p><span style="color: red; font-family: Tahoma; font-size: 16px;">&nbsp;</span><span style="color: rgb(0, 0, 0); font-family: Tahoma; font-size: 16px;"><strong>Patterns</strong></span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">The first step in determining the forecast of a dataset is studying the pattern of the actuals, to deduce the &lsquo;type&rsquo; of data being forecasted. </span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">Types of patterns searched for are; Dormant, Seasonal, Burst, Patchy, Sparse, Launch or Regular. </span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">Dormant and seasonal patterns are the most simple data patterns and checked for first. They are defined as follows;</span></p>
+<p><span style="font-size: 14px;" face="Tahoma"><span style="font-family: Tahoma;"><span style="color: rgb(0, 0, 0);">-</span><span style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><strong><span style="color: rgb(0, 0, 0);">Dormant: </span></strong><span style="color: rgb(0, 0, 0);">If all last year data is zero.</span></span></p>
+<p><span style="font-size: 14px;" face="Tahoma"><span style="font-family: Tahoma;"><span style="color: rgb(0, 0, 0);">-</span><span style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><strong><span style="color: rgb(0, 0, 0);">Seasonal:</span></strong></span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">o</span><span style="font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;" color="#000000" face="Tahoma">&nbsp;&nbsp; </span><span style="font-size: 14px;" face="Tahoma"><span style="color: rgb(0, 0, 0);">If there is more than 52 weeks of data <strong>and</strong></span><span style="color: rgb(0, 0, 0);"><strong> </strong>the data has been defined as seasonal.</span></span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">o</span><span style="font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;" color="#000000" face="Tahoma">&nbsp;&nbsp; </span><span style="font-size: 14px;" color="#000000" face="Tahoma">A series of checks are run on the data to test whether it is a seasonal pattern, for example; </span></p>
+<p><span style="font-size: 14px;" face="Tahoma"><span style="color: rgb(0, 0, 0);">-</span><span style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 14px;" color="#000000" face="Tahoma">Seasonal &lsquo;match&rsquo; greater than defined min. </span></p>
+<p><span style="font-size: 14px;" face="Tahoma"><span style="color: rgb(0, 0, 0);">-</span><span style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 14px;" color="#000000" face="Tahoma">Number of data points real data points less than defined max.</span></p>
+<p><span style="font-size: 14px;" face="Tahoma"><span style="color: rgb(0, 0, 0);">-</span><span style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 14px;" color="#000000" face="Tahoma">These defined values are set in the configuration file on setup. Default example; min seasonal match = 77%, max seasonal actives = 39 (out of 52).</span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">The remaining patterns require more complex analysis. Looking at data characteristics such as periods of no data (when, duration, frequency), start and end week data, and so on. Constants stated in the configuration set the limits of the defining characteristics.</span></p>
+<p><span style="font-size: 14px;" face="Tahoma"><span style="font-family: Tahoma;"><span style="color: rgb(0, 0, 0);">-</span><span style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><strong><span style="color: rgb(0, 0, 0);">Burst</span></strong><span style="color: rgb(0, 0, 0);">: There is only one &lsquo;block&rsquo; of data in the last year but it has not been classed as seasonal.</span></span></p>
+<p><span style="font-size: 14px;" face="Tahoma"><span style="font-family: Tahoma;"><span style="color: rgb(0, 0, 0);">-</span><span style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><strong><span style="color: rgb(0, 0, 0);">Patchy: </span></strong><span style="color: rgb(0, 0, 0);">There is more than a year of data overall but lots of sporadic periods of no data.</span></span></p>
+<p><span style="font-size: 14px;" face="Tahoma"><span style="font-family: Tahoma;"><span style="color: rgb(0, 0, 0);">-</span><span style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><strong><span style="color: rgb(0, 0, 0);">Sparse: </span></strong><span style="color: rgb(0, 0, 0);">There is very little non zero data in the data history.</span></span></p>
+<p><span style="font-size: 14px;" face="Tahoma"><span style="font-family: Tahoma;"><span style="color: rgb(0, 0, 0);">-</span><span style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><strong><span style="color: rgb(0, 0, 0);">Launch:</span></strong><span style="color: rgb(0, 0, 0);"> First week data is zero and one data non-seasonal data &lsquo;block&rsquo;.</span></span></p>
+<p><span style="font-size: 14px;" face="Tahoma"><span style="font-family: Tahoma;"><span style="color: rgb(0, 0, 0);">-</span><span style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><strong><span style="color: rgb(0, 0, 0);">Regular: </span></strong><span style="color: rgb(0, 0, 0);">if data has not been characterized as any of the above and has the more than the minimum number of regular point (as again defined in the configuration), the pattern is set as regular.</span><strong><span style="color: rgb(0, 0, 0);"> </span></strong></span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">For each listing QFX takes the pattern and, using this and other variables, selects the most accurate model for forecasting.</span></p>
+<p><span style="color: rgb(0, 0, 0); font-family: Tahoma; font-size: 16px;">&nbsp;</span></p>
+<h2><span style="font-family: Tahoma; font-size: 20px;"><strong>&nbsp;</strong></span><span style="font-family: Tahoma; font-size: 16px;"><strong>Models</strong></span></h2>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">All of our models exclude seasonality components as QFX adds the &lsquo;seasonal profile&rsquo; to the output forecast. Identified seasonality in the data is removed before modelling and seasonal components are re-introduced at a later stage in the calculation using a multiplicative method.</span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">To determine the best model QFX uses minimizes error between actual data and the forecast of that data. For error detection QFX uses the root mean square value (RMS) and the mean absolute percentage error (MAPE), both are measures of prediction accuracy of a forecasting method in statistics. Once models are chosen the parameters used are calibrated again to refine and achieve highest accuracy.</span></p>
+<p><span style="font-size: 14px;" face="Tahoma"><span style="font-family: Tahoma;"><span style="color: rgb(0, 0, 0);">-</span><span style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><strong><span style="color: rgb(0, 0, 0);">Moving Average, Full-Year Moving Average: </span></strong><span style="color: rgb(0, 0, 0);">Both of these models follow a similar method and algorithm, one studying full year. The parameters for these models are the number of terms.</span></span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">o</span><span style="font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;" color="#000000" face="Tahoma">&nbsp;&nbsp; </span><span style="font-size: 14px;" color="#000000" face="Tahoma">Associated pattern/s: seasonal, launch.</span></p>
+<p><span style="font-size: 14px;" face="Tahoma"><span style="font-family: Tahoma;"><span style="color: rgb(0, 0, 0);">-</span><span style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><strong><span style="color: rgb(0, 0, 0);">Single Exponential Smoothing (SES): </span></strong><span style="color: rgb(0, 0, 0);">SES is used as a basic smoothing model and has no trend component (neither multiplicative nor additive). SES uses a refined smoothing component, alpha, to most accurately forecast.</span></span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">o</span><span style="font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;" color="#000000" face="Tahoma">&nbsp;&nbsp; </span><span style="font-size: 14px;" color="#000000" face="Tahoma">Associated pattern/s: regular.</span></p>
+<p><span style="font-size: 14px;" face="Tahoma"><span style="font-family: Tahoma;"><span style="color: rgb(0, 0, 0);">-</span><span style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><strong><span style="color: rgb(0, 0, 0);">Holt-Winters Growth: </span></strong><span style="color: rgb(0, 0, 0);">The Holts exponential smoothing model we use has an additive trend component, a smoothing parameter and a trend parameter are used to refine the model.</span></span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">o</span><span style="font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;" color="#000000" face="Tahoma">&nbsp;&nbsp; </span><span style="font-size: 14px;" color="#000000" face="Tahoma">Associated pattern/s: regular.</span></p>
+<p><span style="font-size: 14px;" face="Tahoma"><span style="font-family: Tahoma;"><span style="color: rgb(0, 0, 0);">-</span><span style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><strong><span style="color: rgb(0, 0, 0);">Same As Last Year: </span></strong><span style="color: rgb(0, 0, 0);">data is replicated a year (or time period) into the future.</span></span></p>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">o</span><span style="font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;" color="#000000" face="Tahoma">&nbsp;&nbsp; </span><span style="font-size: 14px;" color="#000000" face="Tahoma">Associated pattern/s: sparse.</span></p>
+<p><span style="color: rgb(0, 0, 0); font-family: Tahoma; font-size: 16px;">&nbsp;</span></p>
+<h3><span style="font-family: Tahoma; font-size: 16px;"><strong>Seasonal Profile</strong></span></h3>
+<p><span style="font-size: 14px;" color="#000000" face="Tahoma">Seasonality is the last phase of forecasting and applied onto the forecast (created by the best fit model). The seasonal profile is found from historic data and multiplicatively applied to the forecast.</span></p>
+<p><span style="color: rgb(0, 0, 0); font-family: Tahoma; font-size: 16px;">&nbsp;</span></p>
+<p><span style="color: rgb(0, 0, 0); font-family: Tahoma; font-size: 16px;"><strong>Outliers</strong></span></p>
+<p style="margin: 8px 0px;"><span lang="EN-US" style="margin: 0px; font-size: 14px;" color="#000000" face="Tahoma">QFX
+handles outliers defined by the database (data points during promotional
+periods are flagged as outliers) internally for calculations;</span></p>
+<p style="margin: 8px 0px 8px 48px; text-indent: -18pt;"><span lang="EN-US" style="margin: 0px; font-size: 14px;" face="Tahoma"><span style="color: rgb(0, 0, 0);">&middot;</span><span style="margin: 0px; color: rgb(0, 0, 0); line-height: normal; font-style: normal; font-variant: normal; font-weight: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang="EN-US" style="margin: 0px; font-size: 14px;" color="#000000" face="Tahoma">These
+are used during pattern matching and used/ignored in various circumstances
+during model selection and when applying seasonality.</span></p>
+<p style="margin: 8px 0px;"><span lang="EN-US" style="margin: 0px; font-size: 14px;" color="#000000" face="Tahoma">You can
+manually add outliers on the forecasting screen without changing sales history.</span></p>
+<p style="margin: 8px 0px;"><span lang="EN-US" style="margin: 0px; font-size: 14px;" color="#000000" face="Tahoma">When forecasting QFX replaces outlier values with an interpolation value of the surrounding points, this gives are more accurate representation of the true value before, for example, a promotion, hence producing a more accurate baseline forecast.</span></p>
+<p style="margin: 8px 0px;"><span lang="EN-US" style="margin: 0px; color: rgb(0, 0, 0); font-family: Tahoma; font-size: 20px;"><strong>&nbsp;</strong></span></p>
+<p style="margin: 8px 0px;"><span lang="EN-US" style="margin: 0px; color: rgb(0, 0, 0); font-family: Tahoma; font-size: 16px;"><strong>Forecast Visual Analysis</strong></span></p>
+<p style="margin: 8px 0px;"><span lang="EN-US" style="margin: 0px; color: rgb(0, 0, 0); font-family: Tahoma; font-size: 20px;"><strong>&nbsp;</strong></span><span lang="EN-US" style="margin: 0px; font-size: 14px;" color="#000000" face="Tahoma"><strong>Forecast questions answered:</strong></span></p>
+<ul>
+    <li style="margin: 8px 0px;"><span lang="EN-US" style="margin: 0px; font-size: 14px;" color="#000000" face="Tahoma"><strong>Why do some forecasts start at different points?</strong></span><span lang="EN-US" style="margin: 0px; color: rgb(0, 0, 0); font-family: Tahoma; font-size: 16px;"></span><span lang="EN-US" style="margin: 0px; color: rgb(0, 0, 0); font-family: Tahoma; font-size: 16px;"></span></li>
+</ul>
+<p style="margin: 8px 0px;"><span lang="EN-US" style="margin: 0px; color: rgb(0, 0, 0); font-family: Tahoma; font-size: 12px;">Different models forecast data in different ways. Depending on the model chosen by QFX, the forecast will start at different distances from the first actual. Moving average models will start forecasting 'x' number of weeks after the first week of actuals as this is enough data for it to start forecasting. Same as last year models, however, will start the forecast at the current date, as before the seasonal profile is applied this model is effectively copying the last year of data forward until the horizon.</span></p>
+<p style="margin: 8px 0px;"><span lang="EN-US" style="margin: 0px; color: rgb(0, 0, 0); font-family: Tahoma; font-size: 12px;">Data in the past baseline forecast cells can be used as an accuracy measure for the client, to compare the actuals to what was forcasted for that week/month by QFX, and will help the future forecast be as accurate as possible.</span></p>
+<p style="margin: 8px 0px;"><span lang="EN-US" style="margin: 0px; color: rgb(0, 0, 0); font-family: Tahoma; font-size: 14px;">&nbsp;</span></p>
+<ul>
+    <li style="margin: 8px 0px;"><span lang="EN-US" style="margin: 0px; font-size: 14px;" color="#000000" face="Tahoma"><strong>Why are some forecasts flat?</strong></span><span lang="EN-US" style="margin: 0px; color: rgb(0, 0, 0); font-family: Tahoma; font-size: 16px;"></span></li>
+</ul>
+<p style="margin: 0px;"><span style="margin: 0px; color: rgb(0, 0, 0); font-family: Tahoma; font-size: 12px;">In the absence/uniformity of a seasonal profile some QFX models (eg. moving average) will forecast a flat baseline. This can happen, for example,&nbsp;in&nbsp;new 'LAUNCH' products where</span><span style="margin: 0px; color: rgb(0, 0, 0); font-family: Tahoma; font-size: 12px;"> there is less data than the seasonal profile limit allows (less than
+&frac34; year of data), so a uniform profile is applied hence a flat weekly baseline. </span></p>
+<p style="margin: 0px;"><span style="margin: 0px; color: rgb(0, 0, 0); font-family: Tahoma; font-size: 12px;">This limit is set in the config
+and can be &lsquo;reduced&rsquo; but would lead to issues such as;</span></p>
+<p style="margin: 0px 0px 0px 72px; text-indent: -18pt;"><span style="margin: 0px; color: rgb(0, 0, 0); font-family: Tahoma; font-size: 12px;">-<span style="margin: 0px; line-height: normal; font-style: normal; font-variant: normal; font-weight: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="margin: 0px; color: rgb(0, 0, 0); font-family: Tahoma; font-size: 12px;">The missing data
+weeks from the past year would be forecasted as zeros &ndash; this is not an accurate
+forecast as it&rsquo;s a new product not sparse.</span></p>
+<p style="margin: 0px 0px 0px 72px; text-indent: -18pt;"><span style="margin: 0px; color: rgb(0, 0, 0); font-family: Tahoma; font-size: 12px;">-<span style="margin: 0px; line-height: normal; font-style: normal; font-variant: normal; font-weight: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="margin: 0px; color: rgb(0, 0, 0); font-family: Tahoma; font-size: 12px;">The whole forecast
+would be have a lower total base than truly expected as the forecast has added
+zeros where there shouldn&rsquo;t be/won&rsquo;t be in the future.</span></p>
+<p style="margin: 0px 0px 0px 72px;"><span style="margin: 0px; color: rgb(0, 0, 0); font-family: Tahoma; font-size: 12px;">&nbsp;</span></p>
+<p style="margin: 0px;"><span style="margin: 0px; color: rgb(0, 0, 0); font-family: Tahoma; font-size: 12px;">If the forecast is flat, this is the most accurate forecast QFX can provide with the given data. The forecast will
+continue to improve as more actuals become available and a seasonal profile can
+be created and a more complex model can be applied.</span></p>
