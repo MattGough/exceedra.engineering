@@ -2,8 +2,12 @@ source 'https://rubygems.org'
 
 ruby '2.3.1'
 
+gem 'omniauth-azure-oauth2'
 gem 'rdiscount'
-
+gem 'omniauth'
+gem 'ruby-openid'
+gem 'omniauth-openid'
+gem 'omniauth-twitter'
 gem 'json'
 gem 'jekyll','3.3.1'
 gem 'jekyll-sass-converter','1.3.0'
