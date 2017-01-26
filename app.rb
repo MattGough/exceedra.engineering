@@ -27,7 +27,7 @@ class SinatraApp < Sinatra::Base
   end
 
   get '/auth/azure_oauth2/callback' do
-     erb "<h1>Succuss<h1>
+     erb "<h1>Succussfully logged in<h1>
        <h1>#{params[:provider]}</h1>
       <pre>#{JSON.pretty_generate(request.env['omniauth.auth'])}</pre>"
   end
