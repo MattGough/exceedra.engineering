@@ -2,13 +2,25 @@ source 'https://rubygems.org'
 
 ruby '2.3.1'
 
-gem 'omniauth-azure-oauth2'
-gem 'rdiscount'
+gem 'sinatra'
+gem 'json'
 gem 'omniauth'
+gem 'omniauth-oauth2'
+gem 'dotenv'
+gem 'omniauth-azure-oauth2'
+
+
+gem 'thin'
+group :development do
+  gem 'shotgun'
+end
+
+gem 'rdiscount'
+
 gem 'ruby-openid'
 gem 'omniauth-openid'
-gem 'omniauth-twitter'
-gem 'json'
+
+
 gem 'jekyll','3.3.1'
 gem 'jekyll-sass-converter','1.3.0'
 gem 'kramdown','1.11.1'
