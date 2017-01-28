@@ -60,7 +60,7 @@ def jekyll_blog(path, &missing_file_block)
     elsif (file_path.include?('.svg'))
       erb contents, :content_type => 'image/svg+xml'
     elsif (file_path.include?('.jpg'))
-      erb contents, :content_type => 'image/pjpeg'
+      erb contents, :content_type => 'image/jpeg'
     elsif (file_path.include?('.ico'))
       erb contents, :content_type => 'image/vnd.microsoft.ico'
     elsif (file_path.include?('.woff'))
