@@ -27,7 +27,7 @@ Each time we build the application 'master' branch for any version we package a 
 All of the above is added to a single zip file that matches the standard folder structure
 
 
-{% highlight PS %}
+{% highlight %}
 
 
 ### Get latest versions of all the required files
@@ -98,4 +98,4 @@ If(Test-path $destination)
 #Remove Build temp folders
 Remove-Item  $tempDropPath -recurse
 
-{ % endhighlight %}
+{% endhighlight %}
