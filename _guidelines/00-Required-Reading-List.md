@@ -21,17 +21,17 @@ All engineers need to stay sharp and keep the toolbox full, learning new skills 
 
 [The Phoenix Project](https://en.wikipedia.org/wiki/The_Phoenix_Project_(novel)
 [The twelve factor app](https://12factor.net/)
-  
+
 
 #### Blogs
 
-[Hanselminutes](http://hanselminutes.com/)
-[Iris Claason](http://irisclasson.com/)
-[MSDev show](http://msdevshow.com/)
-[Coding Blocks.Net](https://www.codingblocks.net/) - there is a set of these that cover the Clean Code book 
-[You've been haacked](http://haacked.com/)
-[Conficient](https://conficient.wordpress.com/)
- 
+- [Hanselminutes](http://hanselminutes.com/)
+- [Iris Claason](http://irisclasson.com/)
+- [MSDev show](http://msdevshow.com/)
+- [Coding Blocks.Net](https://www.codingblocks.net/) -they are doing the Clean Code book chapter by chapter
+- [You've been haacked](http://haacked.com/)
+- [Conficient](https://conficient.wordpress.com/)
+
 
 #### Worthy of being read
 

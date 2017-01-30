@@ -25,13 +25,13 @@ Please note you can use tools like
 
 | app | preview | online | Git |
 | ---| --- | --- |
-| http://markdownpad.com/| Y | N | N |
-| vscode | N | N | Y |
-| https://cloose.github.io/CuteMarkEd/ | Y | N | N |
-| http://dillinger.io/ | Y | Y | N |
+| [markdown pad](http://markdownpad.com/) | Y | N | N |
+| [vscode](https://code.visualstudio.com/) | N | N | Y |
+| [CuteMarkEd](https://cloose.github.io/CuteMarkEd/) | Y | N | N |
+| [dillinger](http://dillinger.io/) | Y | Y | N |
 | Vsonline (our repo) | N | Y | Y |
-| https://www.sublimetext.com/ | Y | N | Y |
-| https://atom.io/ | Y | N | Y |
+| [sublime](https://www.sublimetext.com/) | Y | N | Y |
+| [atom](https://atom.io/) | Y | N | Y |
 
 For me the preview functionality is important until you get the hang of the syntax, but the git integration is a nice to have as well.
 Decide for yourself, but from my experience the atom editor is the nicest and is from the github team. Adding a couple of packages like markdown-editor and git-plus make things very easy.
@@ -48,7 +48,7 @@ Where xml is the code you are displaying, a full list is available [here](http:/
 
 { % endhighlight %}
 
-Please note that there are no spaces between the { and the % if
+Please note that there are no spaces between the { and the %
 
 {% highlight C# %}
 
@@ -61,4 +61,4 @@ public Boom
 
 {% endhighlight %}
 
-Something to remember is under your editor renders highlight you wont see the end result locally
+Something to remember is while editing inside most editors, the highlight tage wont render correctly

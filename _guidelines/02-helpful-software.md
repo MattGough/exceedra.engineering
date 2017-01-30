@@ -5,11 +5,11 @@ subtitle:   ""
 collection: guidelines
 ---
 
-##Prerequisite Developer Software
+## Helpful Developer Software
 
 [Git Bash](https://git-scm.com/download/win)
 
-[SourceTree](sourcetreeapp.com)
+[SourceTree](https://sourcetreeapp.com)
 
 [Visual Studio 2017 Community RC](https://www.visualstudio.com/vs/visual-studio-2017-rc/)
 
