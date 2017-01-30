@@ -27,7 +27,7 @@ Each time we build the application 'master' branch for any version we package a 
 All of the above is added to a single zip file that matches the standard folder structure
 
 
-{% highlight %}
+{% highlight PS %}
 
 
 ### Get latest versions of all the required files
@@ -47,7 +47,7 @@ $latestQFXZip = (join-path $dirQFX $latestQFX.name)
 
 ## Database
 $dirDatabase = "$($productSFTP)\DB\"
-$filterDatabase="Exceedra.Database_?*.zip"
+$filterDatabase="Exceedra.Database_?\*.zip"
 $latestDatabase = Get-ChildItem -Path $dirDatabase -Filter $filterDatabase | Sort-Object CreationTime  -Descending | Select-Object -First 1
 $latestDatabaseZip = (join-path $dirDatabase $latestDatabase.name)
 
