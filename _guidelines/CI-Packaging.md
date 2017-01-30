@@ -1,7 +1,7 @@
 ---
 layout:     guidelines
-title:      "How to write a post"
-subtitle:   "wtf is markdown?"
+title:      "Release Packaging"
+subtitle:   "Release, release, release"
 collection: guidelines
 ---
 
