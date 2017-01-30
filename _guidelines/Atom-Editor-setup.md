@@ -28,3 +28,5 @@ To make the most of atom and GIT you should added
 
 ### Git integration
 Once you have your documentation GIT repo setup, simply open the folder from inside Atom and you can edit/add/commit files and content using the git menu (right click on a file or folder to see this)
+
+ CHANGE
