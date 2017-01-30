@@ -27,7 +27,51 @@ Each time we build the application 'master' branch for any version we package a 
 All of the above is added to a single zip file that matches the standard folder structure
 
 
-{% highlight %}
+{% highlight powersehll %}
+
+###
+###		CI build Product release package
+###
+
+## kill me if I break anywhere
+$ErrorActionPreference = "Stop"
+
+## Add reference to the zip compression
+Add-Type -assembly "system.io.compression.filesystem"
+
+#' vars from teamcity
+$Mj = "%vMajor%"
+$Mn = "%vMinor%"
+$Ptch = "%vPatch%"
+$Enhancement = "%Enhancement%"
+$BuildId = "%buildRef%"
+
+$EnhancementTemp = "$($Enhancement)Temp"
+
+
+## Output paths
+$basePath = "F:\SFTP\Packaged\$($Mj).$($Mn)\"
+$tempDropPath = (join-path $basePath "$($EnhancementTemp)\") #$($BuildId)\
+$outputZipPath = (join-path $basePath "$($Enhancement)\") #$($BuildId)\
+
+## zip file name
+#nameing convention Release-E2_2.9.2.[buildID]_[yyyy-MM-dd].zip
+$zipName = "Release-$($Enhancement)-$($BuildId)_v$($Mj).$($Mn).$($Ptch).$($BuildId)_$(Get-Date -f yyyy-MM-dd).zip"
+
+## Zip file destination
+$destination = (join-path $outputZipPath $zipName)
+
+If(Test-path $tempDropPath)
+{
+	Remove-Item  $tempDropPath -recurse
+}
+
+ md $tempDropPath
+
+if((Test-Path $outputZipPath) -eq 0)
+{
+	mkdir $outputZipPath;         
+}
 
 
 ### Get latest versions of all the required files
@@ -35,13 +79,13 @@ $productSFTP = "F:\SFTP\Product"
 
 ## App
 $dirApp = "$($productSFTP)\Application\CI-Builds\"
-$filterApp = "SalesPlanner_$($Mj).$($Mn).$($Ptch)_$($Enhancement)_master_$($BuildId)?*.zip"
+$filterApp = "SalesPlanner_$($Mj).$($Mn).$($Ptch)_$($Enhancement)_master_$($BuildId)?\*.zip"
 $latestApp = Get-ChildItem -Path $dirApp -Filter $filterApp | Sort-Object CreationTime  -Descending | Select-Object -First 1
 $latestAppZip = (join-path $dirApp $latestApp.name)
 
 ## QFX
 $dirQFX = "$($productSFTP)\QFX\"
-$filterQFX="Exceedra.QFXClient_?*.zip"
+$filterQFX="Exceedra.QFXClient_?\*.zip"
 $latestQFX = Get-ChildItem -Path $dirQFX -Filter $filterQFX | Sort-Object CreationTime  -Descending | Select-Object -First 1
 $latestQFXZip = (join-path $dirQFX $latestQFX.name)
 
