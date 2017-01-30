@@ -34,7 +34,7 @@ Please note you can use tools like
 | https://atom.io/ | Y | N | Y |
 
 For me the preview functionality is important until you get the hang of the syntax, but the git integration is a nice to have as well.
-Decide for yourself, but from my experiende the atom editor is the nicest and is from the github team. Adding a couple of packages like markdown-editor and git-plus make things very easy.
+Decide for yourself, but from my experience the atom editor is the nicest and is from the github team. Adding a couple of packages like markdown-editor and git-plus make things very easy.
 
 
 
@@ -44,7 +44,7 @@ Code previews are possible, we use rouge highlighter for this and its built in t
 
 { % highlight xml %}
 
-Where xml is the code you are displaying, a full list is available (here)[http://rouge.jneen.net/
+Where xml is the code you are displaying, a full list is available [here](http://rouge.jneen.net/)
 
 { % endhighlight %}
 
