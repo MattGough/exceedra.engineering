@@ -23,13 +23,20 @@ class SinatraApp < Sinatra::Base
 
   get '/' do
     erb "
-    <a href='http://localhost:4567/auth/azure_oauth2''>Login with Azure</a><br>"
+    <a href='http://localhost:4567/auth/azure_oauth2''><h1>Login with Azure</h1></a><br>"
+  end
+
+  get '/blog?*' do
+    if session[:authenticated] = true
+     jekyll_blog(request.path) {404}
+    else
+     redirect '/'
+    end
   end
 
   get '/auth/azure_oauth2/callback' do
-     erb "<h1>Succussfully logged in<h1>
-       <h1>#{params[:provider]}</h1>
-      <pre>#{JSON.pretty_generate(request.env['omniauth.auth'])}</pre>"
+    puts JSON.pretty_generate(request.env['omniauth.auth'])
+    redirect '/blog'
   end
 
   get '/auth/failure' do
@@ -50,6 +57,43 @@ class SinatraApp < Sinatra::Base
     session[:authenticated] = false
     redirect '/'
   end
+  
+  def jekyll_blog(path, &missing_file_block)
+  @current_menu = "blog"
+  @title = "Blog - Exceedra"
+
+  file_path = File.join(File.dirname(__FILE__), 'jekyll_blog/_site',  path.gsub('/blog',''))
+  file_path = File.join(file_path, 'index.html') unless file_path =~ /\.[a-z]+$/i
+
+  if File.exist?(file_path)
+    file = File.open(file_path, "rb")
+    contents = file.read
+    file.close
+
+
+    if (file_path.include?('.xml'))
+      erb contents, :content_type => 'text/xml'
+    elsif (file_path.include?('.css'))
+      erb contents, :content_type => 'text/css'
+    elsif (file_path.include?('.js'))
+      erb contents, :content_type => 'text/javascript'
+    elsif (file_path.include?('.png'))
+      erb contents, :content_type => 'image/png'
+    elsif (file_path.include?('.svg'))
+      erb contents, :content_type => 'image/svg+xml'
+    elsif (file_path.include?('.jpg'))
+      erb contents, :content_type => 'image/jpeg'
+    elsif (file_path.include?('.ico'))
+      erb contents, :content_type => 'image/vnd.microsoft.ico'
+    elsif (file_path.include?('.woff'))
+      erb contents, :content_type => 'application/font-woff'
+    else
+        erb contents, :layout_engine => :erb
+    end
+  else
+    erb :not_found
+  end
+end
 
 end
 
