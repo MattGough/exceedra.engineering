@@ -5,6 +5,9 @@ require 'omniauth'
 require 'omniauth-azure-oauth2'
 require 'dotenv'
 Dotenv.load
+# Workaround for development on Windows
+# require 'openssl'
+# OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
 
 class SinatraApp < Sinatra::Base
