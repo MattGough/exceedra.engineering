@@ -39,7 +39,7 @@ Server url is:       exceedrasoftware.visualstudio.com
 
 Select the project you want to connect to
 
- `Hit: Connect` 
+ `Hit: Connect`
 
 ![img](/images/guidelines/4.png)
 
@@ -122,8 +122,29 @@ Source tree is free from atlassian, the same people who make JIRA, you need to i
 [Source Tree knowledgebase](https://confluence.atlassian.com/sourcetreekb)
 
 When asked to login into Atlassian cloud, you may have to create a new account, its free and is a different platform to our JIRA account from Atlassian.
-Once logged in you will need to set up your Git folder locally using git bash (there may be a way to do it in sourcetree) once setup you can clone the repos.
 
+Once logged in, you will be presented with a setup page to connect to bitbucket or github projects. As we will be using VSTS, you can safely skip this section. Once skipped (if you do not have GIT or Mercurial installed), you will be presented with some options to either install the full GIT client, or to install an embedded option. The embedded option will suffice. If you do not need mercurial, you can skip the mercurial installation section. At the time of writing, Exceedra is not using mercurial.
+
+Once you've installed Source Tree, you will need to jump over to [VSTS](exceedrasoftware.visualstudio.com) and create alternate login details. Access your user menu in the top right corner and select the security settings option from the drop-down menu.
+
+![img](/images/guidelines/git_setup/vsts_security_settings.png)
+
+Once you have done this, select "Alternate Authentication Credentials" from the side-menu and fill in your details and press save. Remember these details as you'll need them to set up Source Tree.
+
+![img](/images/guidelines/git_setup/vsts_alternate_auth.png)
+
+Switching back to Source Tree, you should be presented with the Clone / Add / Create Repository dialog. If this has not come up automatically, navigate to File -> Clone / New ... (`Ctrl+N`)
+
+![img](/images/guidelines/git_setup/sourcetree_clone_repository.png)
+
+Fill in the Source Path / Url with the following; replacing the USERNAME, PASSWORD, ACCOUNT and PROJECT sections with the specific details required:
+`https://USERNAME:PASSWORD@ACCOUNT.visualstudio.com/defaultcollection/_git/PROJECT`
+
+To access the project documentation GIT, your details would look like this.
+
+`https://BREN:MyPassword123!@exceedrasoftware.visualstudio.com/defaultcollection/_git/Product%20(Documentation)%20GIT`
+
+Finally, set the Destination Path to a local folder and press Clone.
 
 ###  Need a new branch
 
@@ -135,7 +156,7 @@ The new branch name must be structured like:  
 <!--
 ### Git whistles
 
-This uses ruby, so you will need ot install this as per the ruby Setup
+This uses ruby, so you will need to install this as per the ruby Setup
 [install](https://github.com/mezis/git-whistles)
 
 Navigate to the project Git and run:
