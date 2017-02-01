@@ -1,0 +1,36 @@
+#####
+# This file works for TeamCity build integration,
+# any problems with the Gemfile will probably be solved by swapping
+# the content for the stuff below
+####
+
+source 'https://rubygems.org'
+
+ruby '2.3.1'
+
+require 'json'
+require 'open-uri'
+## not calling this as it fails due to a bug in ruby on windows
+# SSL bundler failure and we dont use 'versions' anyway
+#versions = JSON.parse(open('https://pages.github.com/versions.json').read)
+
+## not calling this either for the same reasons
+# the gems we need are detailed below instead of calling to github pages to
+# get a list of gems to use
+#gem 'github-pages', versions['github-pages'], group: :jekyll_plugins
+
+
+
+# Set us up to reload pages interactively
+gem 'rouge'
+gem 'guard-jekyll-plus'
+gem 'guard-livereload'
+
+gem 'jekyll-mentions'
+gem 'jemoji'
+gem 'jekyll-redirect-from'
+gem 'jekyll-sitemap'
+gem 'jekyll-feed'
+gem 'jekyll-paginate'
+
+gem 'wdm', '~> 0.1.0' if Gem.win_platform?
