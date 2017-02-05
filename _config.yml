@@ -11,7 +11,7 @@ email: no@email
 description: > # this means to ignore newlines until "baseurl:"
   Exceedra product blog
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://exceedrarandd.cloudapp.net:10117/" # the base hostname & protocol for your site
+url: "http://localhost/4567" # the base hostname & protocol for your site
 
 encoding: utf-8
 
@@ -46,6 +46,9 @@ collections:
   releasenotes:
     output:       true
     permalink:    /releasenotes/:path/
+  logout:
+    output: true
+    permalink: /logout/:path/
 
 defaults:
   - scope:
@@ -61,3 +64,4 @@ exclude:
   - Guardfile
   - token
   - bin
+  - app.rb

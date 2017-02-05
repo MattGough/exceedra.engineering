@@ -2,6 +2,7 @@ home:        "/"
 articles:    "/articles/"
 guidelines:  "/guidelines/"
 releasenotes:  "/releasenotes/"
+logout:        "/logout/"
 repository:  "https://exceedrasoftware.visualstudio.com/_git/Product%20(Documentation)%20GIT"
 navigation:
   - url:   '/articles/'
@@ -14,3 +15,5 @@ navigation:
     title: 'Release notes'
   - url: '/'
     title:  ''
+  - url:   '/logout/'
+    title: 'Logout'
