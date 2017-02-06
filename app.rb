@@ -6,6 +6,9 @@ require 'omniauth-azure-oauth2'
 require 'dotenv'
 Dotenv.load
 
+require 'openssl'
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+
 
 class SinatraApp < Sinatra::Base
   configure do

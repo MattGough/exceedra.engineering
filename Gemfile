@@ -19,5 +19,6 @@ gem 'jekyll-redirect-from'
 gem 'jekyll-sitemap'
 gem 'jekyll-feed'
 gem 'jekyll-paginate'
+gem 'kramdown',  '~> 1.13.2'
 
 gem 'wdm', '~> 0.1.0' if Gem.win_platform?
