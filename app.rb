@@ -11,7 +11,7 @@ OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
 
 class SinatraApp < Sinatra::Base
-    $loggedIn = Hash.new
+
   configure do
     set :sessions, true
     set :inline_templates, true
@@ -27,11 +27,7 @@ class SinatraApp < Sinatra::Base
   end
 
   get '/auth/azure_oauth2/callback' do
-    userDetails = eval(JSON.pretty_generate(request.env['omniauth.auth']))
-    $email = userDetails[:info][:name]
-    $loggedIn[$email] = 1
-
-    puts $loggedIn
+    session[:authenticated] = true
     redirect '/'
   end
 
@@ -51,12 +47,11 @@ class SinatraApp < Sinatra::Base
 
   get '/logout/' do
     session[:authenticated] = false
-    $loggedIn[$email] = 0
     redirect '/'
   end
 
   get '/?*' do
-    if $loggedIn[$email] == 1
+    if session[:authenticated]
        jekyll_blog(request.path, 'index.html') {404}
     else
       jekyll_blog(request.path, 'login.html') {404}
