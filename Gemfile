@@ -46,7 +46,7 @@ gem 'omniauth-openid'
 
 
 gem 'jekyll','3.3.1'
-gem 'jekyll-sass-converter','1.3.0'
+gem 'jekyll-sass-converter','1.5.0'
 gem 'liquid','3.0.6'
 
 gem 'github-pages-health-check','1.3.0'
